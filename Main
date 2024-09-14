@@ -42,7 +42,7 @@ namespace bai2
             var oldStd = students.FirstOrDefault(s => s.Age == maxAge);
             return oldStd;
         }
-        //Sắp xếp ds hs và xuất ra màn hình
+        //Sắp xếp ds hs theo tuổi và xuất ra màn hình
         static void Arrangeforage( List<Student> students)
         {
             var Argstd = students.OrderBy(s=> s.Age).ToList();
