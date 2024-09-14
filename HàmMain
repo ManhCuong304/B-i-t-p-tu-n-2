@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace bai2
+{
+    internal class Program
+    {
+        //xuất ds hs có tuổi từ 15->18
+        static void Agestd(List<Student> students)
+        {
+            var Agestudent = students.Where(s => s.Age >= 15 && s.Age < 18);
+            Console.WriteLine("Danh sách học sinh có tuổi từ 15 đến 18:");
+            foreach (var student in Agestudent)
+            {
+                Console.WriteLine(student);
+            }
+        }
+        //Xuất ds sv có tên bắt đầu bằng chữ A
+        static void  Namestd(List<Student> students)
+        {
+            var NameStudent = students.Where (s => s.Name.Trim().StartsWith("A"));
+            Console.WriteLine("\nDanh sách học sinh có tên bắt đầu bằng chữ A:");
+            foreach (var student in NameStudent)
+            {
+                Console.WriteLine(student);
+            }
+        }
+        //Tính tổng tuổi
+        static int SumAge(List<Student> students)
+        {
+            var Sumagestd = students.Sum(s => s.Age);
+            return Sumagestd;
+        }
+        //Tìm hs có tuổi lớn nhất
+        static Student SearchSTD(List<Student> students)
+        {
+            var maxAge = students.Max(s => s.Age);
+            var oldStd = students.FirstOrDefault(s => s.Age == maxAge);
+            return oldStd;
+        }
+        //Sắp xếp ds hs và xuất ra màn hình
+        static void Arrangeforage( List<Student> students)
+        {
+            var Argstd = students.OrderBy(s=> s.Age).ToList();
+            foreach(var student in Argstd)
+            {
+                Console.WriteLine(student);
+            }
+        }
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+
+            List < Student> students = new List<Student>();
+
+            students.Add(new Student(1, "Nguyễn Mạnh Cường", 10));
+            students.Add(new Student(2, "Lê Toàn Bân", 17));
+            students.Add(new Student(3, "Lê Minh Học", 15));
+            students.Add(new Student(4, "Anh Hà Anh ", 13));
+            students.Add(new Student(5, "Trương Hà ", 24));
+            Console.WriteLine("Danh sách học sinh:");
+
+
+
+            foreach (var student in students)
+            {
+                Console.WriteLine(student);
+            }
+            Agestd(students);
+            Namestd(students);
+
+            var Sumagestd = SumAge(students);
+            Console.WriteLine($"Tổng tuổi của các học sinh: {Sumagestd}");
+
+            var oldStd = SearchSTD(students);
+            Console.WriteLine($"Học sinh có tuổi lớn nhất: {oldStd}");
+
+            Console.WriteLine("Danh sách học sinh sau khi được sắp xếp:");
+            Arrangeforage(students);
+        }
+    }
+}
